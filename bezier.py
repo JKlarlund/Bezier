@@ -27,20 +27,23 @@ class Beziér:
     def calc_point(a_i, b_i, t):
         return a_i + t*(b_i-a_i)
 
-    def a(self, p, q, t):
+    @staticmethod
+    def a(p, q, t):
         p_x, p_y = p
         q_x, q_y = q
 
         return Beziér.calc_a(p_x, q_x, t), Beziér.calc_a(p_y, q_y, t)
 
-    def b(self, q, s, t):
+    @staticmethod
+    def b(q, s, t):
         q_x, q_y = q
         s_x, s_y = s
         return Beziér.calc_b(q_x, s_x, t), Beziér.calc_b(q_y, s_y, t)
 
-    def point(self, p, q, s, t):
-        a_x, a_y = self.a(p, q, t)
-        b_x, b_y = self.b(q, s, t)
+    @staticmethod
+    def point(p, q, s, t):
+        a_x, a_y = Beziér.a(p, q, t)
+        b_x, b_y = Beziér.b(q, s, t)
         return Beziér.calc_point(a_x, b_x, t), Beziér.calc_point(a_y, b_y, t)
 
     def add_curve(self, p, s):
